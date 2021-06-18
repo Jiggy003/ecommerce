@@ -1,0 +1,22 @@
+version: "3.6"
+
+services:
+    api:
+        image: jiggy003/ecommerce  
+        ports:
+            - "9000:9000"
+        depends_on: 
+            - database    
+
+    database:
+        image:  mysql/mysql-server:latest
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_DATABASE=ecommerce
+            - MYSQL_HOST=ecommerce_database_1
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=password
+            - MYSQL_ROOT_PASSWORD=password
+        volumes: 
+            - ./init:/docker-entrypoint-initdb.d
+            
