@@ -3,21 +3,14 @@ from flask_restful import Api,Resource
 from customer import Invoice
 from customer import Products
 from customer import Orders
-# from customer import inventory_invoice
+
 
 app = Flask(__name__)
 api = Api(app)
 invoice = Invoice()
 products = Products()
 orders = Orders()
-# inventory = inventory_invoice()
-# https://domain.com/products
-# https://domain.com/products/123 => param
-# https://domain.com/products?limit=10 => query string
 
-# api.add_resource(Invoice, '/invoices')
-# #api.add_resource(Invoice, '/invoices/{id}')
-# api.add_resource(Products, '/products/<name>')
 @app.route('/invoices')
 def fetchInvoice():
    #offset = request.args.get('offset')
@@ -72,8 +65,5 @@ def removeOrder(id):
 def helloIndex():
     return 'Hello World'
 app.run(port = 9000, debug=True, host="0.0.0.0")
-# #from customer import Invoicedocker 
-# # Passing data= request.get_json()
-# # Accessing params = request.args.get('')
 
 
