@@ -1,9 +1,3 @@
-#import sqlite3
-#connection = sqlite3.connect('db.sqlite3')
-#cursor = connection.cursor()
-#cursor.execute("Insert Into inventory_product VALUES(120, 'Jollof', 'Tasty', 25)")
-#cursor.execute('SELECT * FROM inventory_invoice')
-# print(cursor.fetchall())
 import sqlite3
 from flask_restful import Resource
 from flask import request
@@ -11,7 +5,6 @@ import json
 import datetime
 from flask import Flask, request, jsonify
 import random
-# from faker import Faker
 import mysql.connector
 
 
@@ -34,9 +27,6 @@ class Invoice(Resource):
         date = datetime.datetime.now()
         status = data['status']
         delivery_status = data['delivery_status']
-
-        #db = sqlite3.connect('db1.sqlite3', timeout=30)
-        #cursor = db.cursor()
         db = mysql.connector.connect(
            host = "ecommerce_database_1",
            user = "root",
@@ -56,9 +46,6 @@ class Invoice(Resource):
     def delete(self,data):
     
         id = data
-        #print(id)
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         db = mysql.connector.connect(
             host = "ecommerce_database_1",
             user = "root",
@@ -107,9 +94,6 @@ class Invoice(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
-
         query = "select * from invoices where id = {}".format(id)
         cursor.execute(query)
         data = cursor.fetchall()
@@ -142,8 +126,6 @@ class Products(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "select id, name, description, price from products"
         cursor.execute(query)
         data = cursor.fetchall()
@@ -171,8 +153,6 @@ class Products(Resource):
             database = "ecommerce",
             auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "select * from products where id = {} ".format(id)
         cursor.execute(query)
         data = cursor.fetchall()
@@ -192,9 +172,6 @@ class Products(Resource):
         description = data['description']
         name = data['name']
         price = data['price']
-
-        #db = sqlite3.connect('db1.sqlite3', timeout=60)
-        #cursor = db.cursor()
         db = mysql.connector.connect(
            host = "ecommerce_database_1",
            user = "root",
@@ -219,8 +196,6 @@ class Products(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "delete from products where id = {}".format(id)
         cursor.execute(query)
 
@@ -248,8 +223,6 @@ class Orders(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "select id, invoices_id, products_id, quantity, date, delivery_date from orders" 
         cursor.execute(query)
         data = cursor.fetchall()
@@ -274,8 +247,6 @@ class Orders(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "select * from orders where id = {}".format(id)
         cursor.execute(query)
         data = cursor.fetchall()
@@ -305,8 +276,6 @@ class Orders(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        # db = sqlite3.connect('db1.sqlite3')
-        # cursor = db.cursor()
         query = "insert into orders (id,invoices_id,products_id,quantity,date,delivery_date) values ({},{},{},{},'{}','{}') ".format(id,invoices_id,products_id,quantity,date,delivery_date)
         cursor.execute(query, (data))
         
@@ -325,8 +294,6 @@ class Orders(Resource):
            database = "ecommerce",
            auth_plugin='mysql_native_password')
         cursor = db.cursor()
-        #db = sqlite3.connect('db1.sqlite3')
-        #cursor = db.cursor()
         query = "delete from orders where id = {}".format(id)
         cursor.execute(query)
 
