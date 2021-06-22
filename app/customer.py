@@ -28,7 +28,7 @@ class Invoice(Resource):
         status = data['status']
         delivery_status = data['delivery_status']
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -47,7 +47,7 @@ class Invoice(Resource):
     
         id = data
         db = mysql.connector.connect(
-            host = "ecommerce_database_1",
+            host = "database",
             user = "root",
             password = "password",
             database = "ecommerce",
@@ -65,7 +65,7 @@ class Invoice(Resource):
     def get(self):#,offset):
       
         db = mysql.connector.connect(
-            host = "ecommerce_database_1",
+            host = "database",
             user = "root",
             password = "password",
             database = "ecommerce",
@@ -88,7 +88,7 @@ class Invoice(Resource):
     def getInvoice(self,data):
         id = data
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -120,7 +120,7 @@ class Display:
 class Products(Resource):
     def get(self):
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -147,7 +147,7 @@ class Products(Resource):
     def findProduct(self,data):
         id = data
         db = mysql.connector.connect(
-            host = "ecommerce_database_1",
+            host = "database",
             user = "root",
             password = "password",
             database = "ecommerce",
@@ -173,7 +173,7 @@ class Products(Resource):
         name = data['name']
         price = data['price']
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -190,7 +190,7 @@ class Products(Resource):
     def removeProduct(self,data):
         id = data
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -217,7 +217,7 @@ class Moves:
 class Orders(Resource):
     def get(self):
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -241,7 +241,7 @@ class Orders(Resource):
     def findOrder(self,data):
         id = data
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -270,7 +270,7 @@ class Orders(Resource):
         date = data['date']
         delivery_date = data['delivery_date']
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
@@ -288,7 +288,7 @@ class Orders(Resource):
     def removeOrder(self,data):
         id = data
         db = mysql.connector.connect(
-           host = "ecommerce_database_1",
+           host = "database",
            user = "root",
            password = "password",
            database = "ecommerce",
