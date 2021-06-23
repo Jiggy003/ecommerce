@@ -1,0 +1,350 @@
+{
+  "openapi": "3.0.0",
+    "info": {
+        "description": "James",
+        "version": "1.0.0",
+        "title": "Ecommerce Api with flask restful",
+        "contact": {
+            "email": "jimjbm741@gmail.com"
+        }
+
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "tags": [
+        {
+            "name": "invoices",
+            "description": "API for requesting and returning invoices"
+        }
+    ],
+    "paths": {
+        "/invoices": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Returns invoices",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/invoices"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Creates a new invoice",
+                "requestBody": {
+                    "description": "invoices post object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/invoicesPostBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "schema":{
+                            "$ref":"#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/invoices/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the invoice that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "invoices"
+                ],
+                "summary": "Get invoice with specified ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name":"id",
+                        "required":true,
+                        "description": "invoices id",
+                        "schema":{
+                            "$ref": "#/components/schemas/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "success",
+                        "schema":{
+                            "$ref":"#/components/schemas/invoices"
+                        }
+                    },
+                    "400": {
+                        "description":"Failed. Misunderstood request."
+                    },
+                    "404": {
+                        "description":"Failed. invoice not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete invoice by ID",
+                "tags": [
+                    "invoices"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "invoices id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood request."
+                    },
+                    "404": {
+                        "description": "Failed. invoice not found."
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Returns products",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/products"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Adds a new product",
+                "requestBody": {
+                    "description": "products post object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/productsPostBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "schema":{
+                            "$ref":"#/components/schemas/ID"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/products/{ID}": {
+            "parameters": [
+                {
+                    "name": "ID",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the product that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "products"
+                ],
+                "summary": "Gets product with specified ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name":"ID",
+                        "required":true,
+                        "description": "products ID",
+                        "schema":{
+                            "$ref": "#/components/schemas/ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "success",
+                        "schema":{
+                            "$ref":"#/components/schemas/products"
+                        }
+                    },
+                    "400": {
+                        "description":"Failed. Misunderstood request."
+                    },
+                    "404": {
+                        "description":"Failed. product not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes product by ID",
+                "tags": [
+                    "products"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "ID",
+                        "required": true,
+                        "description": "products ID",
+                        "schema": {
+                            "$ref": "#/components/schemas/ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ID"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood request."
+                    },
+                    "404": {
+                        "description": "Failed. product not found."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "id": {
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    }
+                }
+            },
+            "invoicesPostBody": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "invoices": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "number"
+                    }
+                }
+            },
+            "invoicess": {
+                "type": "object",
+                "properties": {
+                    "invoices": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/invoices"
+                        }
+                    }
+                }
+            },
+            "ID": {
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    }
+                }
+            },
+            "productsPostBody": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "products": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "number"
+                    }
+                }
+            },
+            "productss": {
+                "type": "object",
+                "properties": {
+                    "invoices": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/products"
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
+}
